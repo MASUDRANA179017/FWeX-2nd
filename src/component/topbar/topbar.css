@@ -1,0 +1,165 @@
+.topbarContainer {
+    height: 50px;
+    width: 100%;
+    padding: 10px 0;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    box-shadow: rgba(223, 223, 223, 1) 0px 7px 29px 0px;
+    z-index: 999;
+}
+
+.menutop {
+    color: var(--white-color);
+}
+
+.active {
+    color: var(--red-color) !important;
+}
+
+.topbarLeft {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.logo {
+    font-size: 45px;
+    margin-left: 20px;
+    font-weight: bold;
+    color: var(--white-color) !important;
+    cursor: pointer;
+
+}
+
+.menutop li {
+    color: var(--bg-color);
+}
+.active li{
+    color: var(--orange-color);
+}
+
+.searchbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    background-color: white;
+    border-radius: 30px;
+    padding: 8px 10px;
+}
+
+.searchIcon {
+    font-size: 30px !important;
+    margin-left: 10px;
+
+}
+.searchInput {
+    border: none;
+    width: 70%;
+}
+.searchInput:focus {
+    outline: none;
+}
+.loginitem {
+    color: var(--white-color) !important;
+}
+
+.topbarIcons svg {
+    color: var(--white-color);
+}
+
+.topbarRight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.topbarLinks {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    height: 100%;
+    color: var(--white-color);
+}
+
+.topbarLinks  .navtext {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: none;
+    
+}
+
+.emergency {
+    color: var(--white-color) !important;
+}
+
+.topbarLinks  .active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--white-color);
+}
+
+
+.topbarIcons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-color);
+}
+
+.topbarIconItem {
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+}
+.topbarIconBadge {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    color: var(--bg-color);
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+.topbarImg {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    
+}
+
+.topbarIcons .loginitem, .topbarIcons .loginitem svg {
+    color: var(--bg-color) !important;
+}
+
+.rana div::before{
+    background-color: var(--orange-color) !important;
+}
+.rana ul{
+    background-color: var(--primary-color) !important;
+}
+
+.css-1t4onvg {
+    background-color: var(--primary-color) !important;
+}
+
+.menutop svg {
+    color: var(--bg-color) !important;
+}
+
+

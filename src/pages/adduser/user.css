@@ -1,0 +1,71 @@
+.usrttable {
+   margin: 20px; 
+}
+
+
+.addusrform {
+   margin-left: 80px;
+
+}
+
+
+.headertext {
+   margin-top: 20px;
+}
+
+.headertext h2{
+  font-size: 45px;
+}
+
+
+
+/* user edit css */
+
+
+.editprofileimg {
+   text-align: center;
+  
+}
+.editprofileimg img{
+   width: 300px;
+   height: 300px;
+   border-radius: 50%;
+   box-shadow: 3px 3px 27px 0px rgba(110, 110, 110, 0.466);
+}
+.editprofileimg h2{
+   margin-top: 20px;
+}
+.editprofileimg Button{
+   margin: 10px;
+}
+
+
+/* new add form css */
+
+input.input-error,select.input-error{
+   border-color: red;
+}
+
+
+/* tab css  */
+.content {
+   display: none;
+}
+
+.show-content {
+   display: inline;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.medicalreport {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.medicalreport img {
+    width: 100%;
+    
+}

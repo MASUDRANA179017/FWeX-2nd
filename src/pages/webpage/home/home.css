@@ -1,0 +1,118 @@
+.Image {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.Image  img{
+    width: 100%;
+    
+}
+
+.title h2 {
+    text-align: start;
+    font-size: 40px;
+}
+.title p {
+    text-align: start;
+    font-size: 20px;
+    font-weight: 400;
+}
+.title  .btnbox {
+  display: flex;
+   width: 100%;
+   align-items: start;
+   justify-content: start;
+}
+
+.title .btnbox Button {
+    position: relative;
+    align-items: start;
+    justify-content: start;
+}
+
+
+.stakeholders {
+    text-align: center;
+    
+}
+.stakeholders h2 {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 60px;
+    
+}
+.stakeholders p {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px;
+    
+}
+
+.section1 {
+    display: flex;
+
+}
+
+
+.ProcesService {
+    width: 100%;
+    display: block;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+.pagebox {
+    margin: 60px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .Box {
+    margin: 60px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .title {
+    font-family: var(--primary-font);
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+    padding: 10%;
+  
+  }
+  .title h2 {
+    font-family: var(--primary-font);
+    font-size: 30px;
+    font-weight: bold;
+  
+  }
+ .title p {
+    font-family: var(--primary-font);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-top: 20px;
+   
+  }
+  
+  .img {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .title Button {
+    padding: 10px 20px;
+    border: 1px solid var(--black-color);
+    margin-top: 20px;
+  }
+  
