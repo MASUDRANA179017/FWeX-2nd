@@ -8,6 +8,7 @@ import AmbasySvg from "../../../svg/Ambasy";
 import RecruitmentAgentSVG from "../../../svg/RecruitmentAgent";
 import EmployeeSvg from "../../../svg/Employee";
 import WorkerSvg from "../../../svg/WorkerSVG";
+import TopBar2 from "../../../component/topbar/Topbar-2";
 
 
 

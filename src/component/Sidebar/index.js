@@ -11,6 +11,7 @@ import BasicModal from "../Modal";
 import Modal from "../Modal";
 import Modals from "../Modal";
 
+
 const Sidebar = () => {
   const auth = getAuth();
   const dispatch = useDispatch();

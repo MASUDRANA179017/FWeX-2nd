@@ -8,22 +8,38 @@ import {
   Settings,
   PersonAdd,
   Phone,
+  ViewList,
 } from "@mui/icons-material";
 import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import { Divider, ListItemIcon, Menu, MenuItem } from "@mui/material";
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { Loginusers } from "../../feature/Slice/LoginSlice";
 // import { Loginusers } from "../../feature/slice/userSlice";
+// add topbar 2 theke add kora
+import React, { useEffect, useState } from "react";
+import "./topbar.css";
+
+import { AiOutlineCloudUpload } from "react-icons/ai";
+import { BiLogOut } from "react-icons/bi";
+// import { signOut, getAuth } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+// import { Loginusers } from "../../feature/Slice/LoginSlice";
+// import { Link, useNavigate } from "react-router-dom";
+import BasicModal from "../Modal";
+import Modal from "../Modal";
+import Modals from "../Modal";
+// import { ListItemIcon, MenuItem } from "@mui/material";
+// import { Logout } from "@mui/icons-material";
 
 export const TopBar = () => {
   const [anchorEl, setAnchorEl] = useState();
-  const navigate = useNavigate
+  const navigate = useNavigate;
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -32,14 +48,41 @@ export const TopBar = () => {
     setAnchorEl(null);
   };
   const auth = getAuth();
-  const dispatch = useDispatch()
-  const handleLogout =()=>{
-    signOut(auth).then(()=>{
-      localStorage.removeItem("users")
-      dispatch(Loginusers(null))
-      navigate ("/login")
-    })
-  }
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    signOut(auth).then(() => {
+      localStorage.removeItem("users");
+      dispatch(Loginusers(null));
+      navigate("/");
+    });
+  };
+
+  // topbar 2 theke use
+
+  // const auth = getAuth();
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // const [open, setOpen] = useState(false);
+  // const handleOpen = () => setOpen(true);
+  const user = useSelector((users) => users.login.loggedIn);
+  // const handleLogout = () => {
+  //   signOut(auth).then(() => {
+  //     localStorage.removeItem("users");
+  //     localStorage.removeItem("role");
+  //     dispatch(Loginusers(null));
+  //     navigate("/login");
+  //   });
+  // };
+
+  //   const { currentUser } = useContext(AuthContext);
+  // const [username, setUsername] = useState("");
+  //   const navigate = useNavigate();
+
+
+
+  // const clickSignup = () => {
+  //   navigate("/signup");
+  // };
 
   return (
     <div className="topbarContainer">
@@ -59,9 +102,9 @@ export const TopBar = () => {
             <NavLink className="menutop" to="/about" onClick={handleClose}>
               <MenuItem>about</MenuItem>
             </NavLink>
-           
           </div>
         </Grid>
+
         {/* <Grid item xs={3}>
           <div className="searchbar">
             <Search className="searchIcon" />
@@ -86,8 +129,9 @@ export const TopBar = () => {
               <Notifications />
               <span className="topbarIconBadge">1</span>
             </div> */}
-            <div onClick={handleClick}>
-              
+
+            {user ? (
+              <div onClick={handleClick}>
               <MenuItem className="loginitem">
                 <ListItemIcon>
                   <Logout fontSize="small" />
@@ -95,9 +139,13 @@ export const TopBar = () => {
                 Account
               </MenuItem>
             </div>
+            ) : (
+              <button className="signin">
+                <Link to="/login">Login</Link>
+              </button>
+            )}
 
             <div className="profileSetting">
-              
               <Menu
                 anchorEl={anchorEl}
                 id="account-menu"
@@ -133,31 +181,37 @@ export const TopBar = () => {
                 }}
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}>
+                <div className="LoginSection">
+                  <div className="username">
+                    {user && <p>Welcome, {user.displayName}</p>}
+                  </div>
+                  <div className="buttons">
+                    <div onClick={handleClick}>
+                      {user ? (
+                        <NavLink
+                          className="menutop"
+                          to="/deshbord"
+                          onClick={handleClose}>
+                          <MenuItem>
+                            <ViewList>
+                              <Settings fontSize="small" />
+                            </ViewList>
+                            Deshbord
+                          </MenuItem>
+                        </NavLink>
+                      ) : (
+                        <button className="signin">
+                          <Link to="/login"></Link>
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
                 
-                <NavLink className="menutop" to="/deshbord" onClick={handleClose}>
-                  <MenuItem>
-                    <ListItemIcon>
-                      <PersonAdd fontSize="small" />
-                    </ListItemIcon>
-                    Agent login
-                  </MenuItem>
-                </NavLink>
-                <NavLink className="menutop" to="/deshbord" onClick={handleClose}>
-                  <MenuItem>
-                    <ListItemIcon>
-                      <Settings fontSize="small" />
-                    </ListItemIcon>
-                    Employer login
-                  </MenuItem>
-                </NavLink>
-                <NavLink className="menutop" to="/deshbord" onClick={handleClose}>
-                  <MenuItem>
-                    <ListItemIcon>
-                      <Settings fontSize="small" />
-                    </ListItemIcon>
-                    Employee
-                  </MenuItem>
-                </NavLink>
+                  {/* <div className="logout" onClick={handleLogout}>
+                    <BiLogOut />
+                  </div> */}
                 
               </Menu>
             </div>

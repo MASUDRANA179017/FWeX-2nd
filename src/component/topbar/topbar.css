@@ -163,3 +163,31 @@
 }
 
 
+
+
+/* Login section style  */
+
+.LoginSection {
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.username {
+    padding: 20px 0px;
+    text-align: center;
+    color: wheat;
+}
+
+.topbarIcons .signin {
+    padding: 5px 15px;
+}
+.topbarIcons .logout {
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
