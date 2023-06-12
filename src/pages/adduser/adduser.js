@@ -130,6 +130,7 @@ const Addusers = () => {
   const adduser = async () => {
     setLoading(true);
     try {
+      
       // console.log(formik);
       const userRef = collection(db, "users");
       await addDoc(userRef, formik.values);
@@ -168,7 +169,7 @@ const Addusers = () => {
         <Grid container>
           <Grid
             className="addusrform"
-            style={{ padding: "20px 80px" }}
+            style={{ padding: "20px 20px" }}
             item
             xs={12}>
             <form onSubmit={formik.handleSubmit}>
@@ -1158,11 +1159,11 @@ const Addusers = () => {
 
               <div className="reg-btn">
                 {loading ? (
-                  <Button type="submit" disabled variant="contained" fullWidth>
+                  <Button type="submit" disabled variant="contained" >
                     <PulseLoader
                       baground-color="#0000"
                       color="#fff"
-                      size={10}
+                      size={5}
                     />
                   </Button>
                 ) : (
@@ -1170,7 +1171,7 @@ const Addusers = () => {
                     type="submit"
                     variant="contained"
                     onClick={formik.Addusers}
-                    fullWidth>
+                    >
                     Submit Data
                   </Button>
                 )}

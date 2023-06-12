@@ -37,7 +37,7 @@ function App() {
           </Route>
         </Route>
         <Route element={<Notloggedinuser />}>
-          {/* <Route path="/signup" element={<SignUp />}></Route> */}
+          <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/forgotpassword" element={<Forgotpassword />}></Route>
         </Route>

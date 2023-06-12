@@ -21,6 +21,7 @@ const Sidebar = () => {
   const handleLogout = () => {
     signOut(auth).then(() => {
       localStorage.removeItem("users");
+      localStorage.removeItem("role");
       dispatch(Loginusers(null));
       navigate("/login");
     });

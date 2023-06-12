@@ -4,7 +4,8 @@
 
 
 .addusrform {
-   margin-left: 80px;
+   margin: auto;
+   
 
 }
 
@@ -15,6 +16,13 @@
 
 .headertext h2{
   font-size: 45px;
+}
+
+.reg-btn {
+   width: 93%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 

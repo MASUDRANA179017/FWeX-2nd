@@ -12,6 +12,7 @@ import {
   GithubAuthProvider,
   sendPasswordResetEmail,
 } from "firebase/auth";
+import { doc, getDoc,Firestore } from "firebase/firestore";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,6 +23,9 @@ import FacebookSVG from "../../svg/facebook";
 import GoogleSVG from "../../svg/google";
 import { useDispatch } from "react-redux";
 import { Loginusers } from "../../feature/Slice/LoginSlice";
+import {app} from '../../DB/firebaseConfig';
+import { getDocs, collection,query, where,collectionGroup } from "firebase/firestore";
+import { db } from "../../DB/firebaseConfig";
 
 const Forms = () => {
   const dispatch = useDispatch();
@@ -32,6 +36,7 @@ const Forms = () => {
   const provider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
   const githubProvider = new GithubAuthProvider();
+  
   const handleViewHide = () => {
     if (passShow === "password") {
       setPassShow("text");
@@ -54,16 +59,48 @@ const Forms = () => {
 
   const signInUser = () => {
     setLoading(true);
+    console.log('Signin User');
     signInWithEmailAndPassword(
       auth,
       formik.values.email,
       formik.values.password
-    )
-      .then(({ user }) => {
+    ).then(async ({ user }) => {
+      const uid = user.uid;
+      const q = query(collectionGroup(db, 'roles'), where("uid", "==", uid));
+      const snap = await getDocs(q);
+      console.log('snap done',snap);
+      snap.forEach((doc)=>{
+        localStorage.setItem('role',doc.data().roleName);
+      })
+      console.log(localStorage.getItem('role'));
+      // .get()
+      // .then((docSnap)=>{
+      //   console.log('after get');
+      // if(docSnap.exists()){
+      //   console.log(docSnap.data());
+      // }else{
+      //   console.log('No data found!')
+      // }
+      // })
+
         if (user.emailVerified === true) {
           dispatch(Loginusers(user));
           localStorage.setItem("users", JSON.stringify(user));
+          const role = (localStorage.getItem('role'));
+          const navigateto = "admin";
           navigate("/deshbord");
+
+          {navigateto === role ? (
+            navigate("/deshbord")
+          ) : (
+            navigate("/")
+          )}
+
+
+
+
+
+
           // toast.success("account login", {
           //   position: "top-center",
           //   autoClose: 3000,
@@ -90,6 +127,8 @@ const Forms = () => {
         }
       })
       .catch((error) => {
+        console.log(error.message);
+
         if (error.message.includes("auth/invalid-email")) {
           toast.error("invalid email address", {
             position: "top-center",
@@ -265,7 +304,7 @@ const Forms = () => {
         <form onSubmit={formik.handleSubmit}>
           <TextField
             type="email"
-            id="outlined-basic"
+            className="outlined-basic"
             name="email"
             label="Email Address"
             variant="outlined"
@@ -283,7 +322,7 @@ const Forms = () => {
           <div className="password__field">
             <TextField
               type={passShow}
-              id="outlined-basic"
+              className="outlined-basic"
               name="password"
               label="Password"
               variant="outlined"
@@ -320,9 +359,9 @@ const Forms = () => {
           <div className="forgot__pass">
             <Link to="/forgotpassword">Forgot your password ?</Link>
           </div>
-          {/* <p className="signup__text">
+          <p className="signup__text">
             Don't have an account ? <Link to="/signup">Sign Up</Link>
-          </p> */}
+          </p>
         </form>
       </div>
     </>

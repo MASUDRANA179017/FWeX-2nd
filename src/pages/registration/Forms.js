@@ -12,6 +12,7 @@ import {
   sendEmailVerification,
   updateProfile,
 } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PulseLoader } from "react-spinners";
@@ -60,9 +61,16 @@ const Forms = () => {
       auth,
       formik.values.email,
       formik.values.password
-    )
-      .then(({ user }) => {
-        console.log(user);
+    ).then( ({ user }) => {
+        //TODO: add role
+      //   const role = {
+      //     uid:user.uid,
+      //     roleName: 'noRole'
+      //   }
+        
+      // const userRef = collection(db, "roles");
+      // addDoc(userRef, role);
+
         updateProfile(auth.currentUser, {
           displayName: formik.values.fullname,
         }).then(() => {
