@@ -19,6 +19,10 @@ import UpdateUser from "./pages/adduser/UpdateUser";
 import Deshbord from "./pages/Deshbord";
 import Homepage from "./pages/webpage/home";
 import About from "./pages/webpage/about";
+import AddAccess from "./component/access";
+import EmployeDeshbord from "./pages/Deshbord/employee";
+import EmployeeList from "./component/Datafile";
+import AdddataForm from "./component/Datafile/form";
 
 function App() {
   const router = createBrowserRouter(
@@ -34,6 +38,11 @@ function App() {
             <Route path="/edituser" element={<EditUserdata />} />
             <Route path="/addlead" element={<UsersTable />} />
             <Route path="/updateUser" element={<UpdateUser />} />
+            <Route path="/access" element={<AddAccess />} />
+            <Route path="/employedeshbord" element={<EmployeDeshbord />} />
+            <Route path="/employee" element={<EmployeeList />} />
+            <Route path="/AdddataForm" element={<AdddataForm />} />
+
           </Route>
         </Route>
         <Route element={<Notloggedinuser />}>

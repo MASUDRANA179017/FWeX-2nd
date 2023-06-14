@@ -1,0 +1,27 @@
+.home_pages{
+    justify-content: space-between;
+    margin-top: 20px;
+
+}
+
+.home_items{
+    padding: 0 15px !important;
+}
+.container {
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.card {
+    transition: all .25s ease-in-out;
+    border: 1px solid #efe8e8;
+    margin: 5px;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 2px;
+    -webkit-box-shadow: rgba(99,99,99,.2) 0 2px 8px 0;
+    -moz-box-shadow: rgba(99,99,99,.2) 0 2px 8px 0;
+    box-shadow: rgba(99,99,99,.2) 0 2px 8px 0;
+
+}
+

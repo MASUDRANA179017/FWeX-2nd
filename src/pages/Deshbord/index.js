@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.css";
 import Grid from "@mui/material/Grid";
-import Grouplist from "../../component/grouplist";
 import Friendrequst from "../../component/friendrequest";
 import Friends from "../../component/friends";
 import Mygroups from "../../component/mygroups";
@@ -11,6 +10,7 @@ import { useSelector } from "react-redux";
 import Addusers from "../adduser/adduser";
 import UsersTable from "../adduser";
 import UserDashboard from "../../component/charts/user";
+import Grouplist from "../data.js";
 
 const Deshbord = () => {
   return (
@@ -39,28 +39,13 @@ const Deshbord = () => {
             </div>
            
           </Grid>
-          <Grid className="home_items" item xs={6}>
+          <Grid className="home_items" item xs={12}>
             <div>
-              <Userlists />
+              <Grouplist />
             </div>
            
           </Grid>
-          
-          <Grid className="home_items" item xs={6}>
-            <div>
-              <Blockuser />
-            </div>
-          </Grid>
-          <Grid className="home_items" item xs={12}>
-            <div>
-              
-            </div>
-          </Grid>
-          <Grid className="home_items" item xs={12}>
-            <div>
-             
-            </div>
-          </Grid>
+
         </Grid>
       </div>
     </>

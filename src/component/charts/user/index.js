@@ -1,7 +1,7 @@
 import React from "react";
 import Ranaapexchart from "../../charts/overview/Ranaapexcharts";
 import BarChart from "../../charts/overview/barchart";
-import EmpListing from "../../../pages/Deshbord/EmpListing";
+import EmpListing from "../../../pages/Deshbord/employee/EmpListing";
 import { Grid } from "@mui/material";
 
 const UserDashboard = () => {

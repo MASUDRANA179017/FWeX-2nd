@@ -1177,9 +1177,7 @@ const Addusers = () => {
                 )}
               </div>
 
-              {/* <Button type="submit" variant="contained" onClick={Addusers}>
-                Submit Data
-              </Button> */}
+              
             </form>
           </Grid>
         </Grid>
