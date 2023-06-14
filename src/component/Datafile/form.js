@@ -23,9 +23,16 @@ const AddDataForm = () => {
 
   let initialvalues = {
     AgencyFullName: "",
-    fullname: "",
-    password: "",
-    confirm_password: "",
+    AgencySurName: "",
+    Gender: "",
+    BirthDate: "",
+    BirthPlace: "",
+    Nationality: "",
+    PassportNo: "",
+    PassportIssueDate: "",
+    passportissuePlace: "",
+    passportExpiry: "",
+    JobSector: "",
   };
   const formik = useFormik({
     initialValues: initialvalues,
@@ -96,7 +103,13 @@ const AddDataForm = () => {
       AgencyFullName: formik.values.AgencyFullName,
       AgencySurName: formik.values.AgencySurName,
       Gender: formik.values.Gender,
-      BirthDate: formik.values.BirthDate,
+      BirthPlace: formik.values.BirthPlace,
+      Nationality: formik.values.Nationality,
+      PassportNo: formik.values.PassportNo,
+      PassportIssueDate: formik.values.PassportIssueDate,
+      passportissuePlace: formik.values.passportissuePlace,
+      passportExpiry: formik.values.passportExpiry,
+      JobSector: formik.values.JobSector,
     }).then(()=>{
       setLoading(false);
     })
@@ -117,17 +130,21 @@ const AddDataForm = () => {
         }, 2000);
       })
       .catch((error) => {
-        toast.error("Check your data mistake ", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-        setLoading(false);
+        if (error.message) {
+          console.log(error.message);
+          
+          toast.error("Check your data mistake ", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          setLoading(false);
+        }
       });
   };
 
@@ -190,16 +207,16 @@ const AddDataForm = () => {
                       onChange={formik.handleChange}
                       name="Gender"
                       //required="true"
-                      label="AgGendere">
+                      label="Gender">
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
                       <MenuItem value={"Male"}>Male</MenuItem>
                       <MenuItem value={"Female"}>Female</MenuItem>
                     </Select>
-                    {formik.errors.AgencyFullName &&
-                      formik.touched.AgencyFullName && (
-                        <p className="errors">{formik.errors.AgencyFullName}</p>
+                    {formik.errors.Gender &&
+                      formik.touched.Gender && (
+                        <p className="errors">{formik.errors.Gender}</p>
                       )}
                   </FormControl>
                 </Grid>
@@ -219,6 +236,109 @@ const AddDataForm = () => {
                   />
                   {formik.errors.BirthDate && formik.touched.BirthDate && (
                     <p className="error__message">{formik.errors.BirthDate}</p>
+                  )}
+                </Grid>
+                <Grid item xs={5}>
+                  <TextField
+                 
+                    type="text"
+                    name="BirthPlace"
+                    label="Birth Place"
+                    variant="outlined"
+                    fullWidth
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.BirthPlace}
+                    margin="normal"
+                  />
+                  {formik.errors.BirthPlace && formik.touched.BirthPlace && (
+                    <p className="error__message">{formik.errors.BirthPlace}</p>
+                  )}
+                </Grid>
+                <Grid item xs={5}>
+                  <TextField
+                 
+                    type="text"
+                    name="Nationality"
+                    label="Nationality"
+                    variant="outlined"
+                    fullWidth
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.Nationality}
+                    margin="normal"
+                  />
+                  {formik.errors.Nationality && formik.touched.Nationality && (
+                    <p className="error__message">{formik.errors.Nationality}</p>
+                  )}
+                </Grid>
+                <Grid item xs={5}>
+                  <TextField
+                 
+                    type="text"
+                    name="PassportNo"
+                    label="Passport No"
+                    variant="outlined"
+                    fullWidth
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.PassportNo}
+                    margin="normal"
+                  />
+                  {formik.errors.PassportNo && formik.touched.PassportNo && (
+                    <p className="error__message">{formik.errors.PassportNo}</p>
+                  )}
+                </Grid>
+                <Grid item xs={5}>
+                  <TextField
+                 
+                    type="date"
+                    name="PassportIssueDate"
+                    label="Passport Issue Date"
+                    focused
+                    variant="outlined"
+                    fullWidth
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.PassportIssueDate}
+                    margin="normal"
+                  />
+                  {formik.errors.PassportIssueDate && formik.touched.PassportIssueDate && (
+                    <p className="error__message">{formik.errors.PassportIssueDate}</p>
+                  )}
+                </Grid>
+                <Grid item xs={5}>
+                  <TextField
+                 
+                    type="text"
+                    name="passportissuePlace"
+                    label="Passport No"
+                    variant="outlined"
+                    fullWidth
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.passportissuePlace}
+                    margin="normal"
+                  />
+                  {formik.errors.passportissuePlace && formik.touched.passportissuePlace && (
+                    <p className="error__message">{formik.errors.passportissuePlace}</p>
+                  )}
+                </Grid>
+                <Grid item xs={5}>
+                  <TextField
+                 
+                    type="text"
+                    name="passportExpiry"
+                    label="Passport No"
+                    variant="outlined"
+                    fullWidth
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.passportExpiry}
+                    margin="normal"
+                  />
+                  {formik.errors.passportExpiry && formik.touched.passportExpiry && (
+                    <p className="error__message">{formik.errors.passportExpiry}</p>
                   )}
                 </Grid>
 

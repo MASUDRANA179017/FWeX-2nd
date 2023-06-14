@@ -90,8 +90,6 @@ export default function UsersTable() {
     });
   };
 
-  
-
   const editApi = async (id) => {
     const userDoc = doc(db, "users", id);
     // await deleteDoc(userDoc);
@@ -224,26 +222,30 @@ export default function UsersTable() {
               <TableBody>
                 {rows
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => {
+                  .map((item, i) => {
                     return (
                       <TableRow
                         hover
                         role="checkbox"
                         tabIndex={-1}
-                        key={row.code}>
-                        <TableCell align="center">{row.AgencyFullName} {row.AgencySurName}</TableCell>
-                        <TableCell align="center">{row.Gender}</TableCell>
+                        key={item.code}>
                         <TableCell align="center">
-                          {row.AgencyCurrent}
+                          {item.AgencyFullName} {item.AgencySurName}
                         </TableCell>
-                        <TableCell align="center">{row.CurrentMobileNo}</TableCell>
-                        <TableCell align="center">{row.Nationality}</TableCell>
-                        <TableCell align="center">{row.Status}</TableCell>
-                        <TableCell align="center">{row.JobSector}</TableCell>
+                        <TableCell align="center">{item.Gender}</TableCell>
+                        <TableCell align="center">
+                          {item.AgencyCurrent}
+                        </TableCell>
+                        <TableCell align="center">
+                          {item.CurrentMobileNo}
+                        </TableCell>
+                        <TableCell align="center">{item.Nationality}</TableCell>
+                        <TableCell align="center">{item.Status}</TableCell>
+                        <TableCell align="center">{item.JobSector}</TableCell>
 
                         <TableCell align="center">
                           <Stack spacing={2} direction="row">
-                            <NavLink to={`/updateuser?id=${row.id}`}>
+                            <NavLink to={`/updateuser?id=${item.id}`}>
                               <Visibility
                                 style={{
                                   fontSize: "20px",
@@ -252,7 +254,7 @@ export default function UsersTable() {
                                 }}
                               />
                             </NavLink>
-                            <NavLink to={`/edituser?id=${row.id}`}>
+                            <NavLink to={`/edituser?id=${item.id}`}>
                               <Edit
                                 style={{
                                   fontSize: "20px",
@@ -272,14 +274,14 @@ export default function UsersTable() {
                                 cursor: "pointer",
                               }}
                               onClick={() => {
-                                deleteUser(row.id);
+                                deleteUser(item.id);
                               }}
                             />
                           </Stack>
                         </TableCell>
                       </TableRow>
                     );
-                  })}
+                  })};
               </TableBody>
             </Table>
           </TableContainer>

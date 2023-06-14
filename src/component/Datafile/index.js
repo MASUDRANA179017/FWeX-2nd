@@ -16,11 +16,19 @@ import {
 import { useSelector } from "react-redux";
 
 import moment from "moment/moment";
-import { Delete, Edit, PersonAddAlt, Visibility, } from "@mui/icons-material";
+import { Delete, Edit, PersonAddAlt, Visibility } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import { Stack } from "@mui/material";
 import Viewdata from "./view";
 
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
 
 const EmployeeList = () => {
   const [open, setOpen] = React.useState(false);
@@ -30,6 +38,14 @@ const EmployeeList = () => {
   const handleClose = () => setOpen(false);
   const db = getDatabase();
   const [mygrps, setMygrps] = useState([]);
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
   // // creating groups
   // const handleGrpCreate = () => {
@@ -69,6 +85,24 @@ const EmployeeList = () => {
     });
   }, []);
 
+  const [users, setUsers] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rows, setRows] = useState([]);
+
+  const getData = async () => {
+    try {
+      // *making an readable arry for the data firebase
+      const data = ref.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      setUsers(data);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <div className="mygrps">
@@ -80,16 +114,13 @@ const EmployeeList = () => {
               <input type="text" placeholder="Search..." />
             </div>
 
-            <Button
-              variant="contained"
-              endIcon={<PersonAddAlt />}>
+            <Button variant="contained" endIcon={<PersonAddAlt />}>
               <span>
                 <NavLink to="/AdddataForm" style={{ color: "white" }}>
                   Add User
                 </NavLink>
               </span>
             </Button>
-
           </div>
         </div>
         <div className="grouplist_body">
@@ -99,13 +130,58 @@ const EmployeeList = () => {
                 <img src="/assets/avatar.png" alt="avatr" />
               </div>
               <div className="mygrps_titles">
-                <h4>{item.AgencyFullName}</h4>
-                <span>{item.grouptag}</span>
+                <TableContainer>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell align="center" style={{ minWidth: "100px" }}>
+                          Agency Name
+                        </TableCell>
+                        <TableCell align="center" style={{ minWidth: "100px" }}>
+                          Gender
+                        </TableCell>
+                        <TableCell align="center" style={{ minWidth: "100px" }}>
+                          Current Agency
+                        </TableCell>
+                        <TableCell align="center" style={{ minWidth: "100px" }}>
+                          Contact No
+                        </TableCell>
+                        <TableCell align="center" style={{ minWidth: "100px" }}>
+                          Nationality
+                        </TableCell>
+
+                        <TableCell align="center" style={{ minWidth: "100px" }}>
+                          Status
+                        </TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={item.code}>
+                        <TableCell align="center">
+                          {item.AgencyFullName} {item.AgencySurName}
+                        </TableCell>
+                        <TableCell align="center">{item.Gender}</TableCell>
+                        <TableCell align="center">
+                          {item.AgencyCurrent}
+                        </TableCell>
+                        <TableCell align="center">
+                          {item.CurrentMobileNo}
+                        </TableCell>
+                        <TableCell align="center">{item.Nationality}</TableCell>
+                        <TableCell align="center">{item.Status}</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
               </div>
-              
+
               <div className="mygrps_date">
                 <Stack spacing={2} direction="row">
-                  <div >
+                  <div>
                     <Visibility
                       style={{
                         fontSize: "20px",
@@ -115,7 +191,7 @@ const EmployeeList = () => {
                       onClick={handleOpen}
                     />
                   </div>
-                  <NavLink >
+                  <NavLink>
                     <Edit
                       style={{
                         fontSize: "20px",
@@ -133,12 +209,14 @@ const EmployeeList = () => {
                       fontSize: "20px",
                       color: "darkred",
                       cursor: "pointer",
-                    }}onClick={() => removedata(item)}
-                    
+                    }}
+                    onClick={() => removedata(item)}
                   />
                 </Stack>
-                <p> <span>{moment().add(item.date, "days").calendar()}</span></p>
-                
+                <p>
+                  {" "}
+                  <span>{moment().add(item.date, "days").calendar()}</span>
+                </p>
               </div>
             </div>
           ))}
