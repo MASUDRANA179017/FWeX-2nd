@@ -16,7 +16,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PulseLoader } from "react-spinners";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, push, ref, set } from "firebase/database";
 
 const AddAccess = () => {
   const [passShow, setPassShow] = useState("password");
@@ -44,7 +44,11 @@ const AddAccess = () => {
   let initialvalues = {
     email: "",
     fullname: "",
+    address: "",
     password: "",
+    phoneNumber: "",
+    Country: "",
+    roleName: "",
     confirm_password: "",
   };
   const formik = useFormik({
@@ -77,8 +81,11 @@ const AddAccess = () => {
           setLoading(true);
           sendEmailVerification(auth.currentUser).then(() => {
             set(ref(db, "users/" + user.uid), {
-              username: user.displayName,
+              companyName: user.displayName,
               email: user.email,
+              address: formik.values.address,
+              phoneNumber: formik.values.phoneNumber,
+              Country: formik.values.Country,
             }).then(() => {
               toast.success("Email has sent", {
                 position: "top-center",
@@ -89,7 +96,7 @@ const AddAccess = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-              });
+              })
               setTimeout(() => {
                 navigate("/login");
               }, 6500);
@@ -160,7 +167,7 @@ const AddAccess = () => {
             type="text"
             id="outlined-basic"
             name="fullname"
-            label="Full Name"
+            label=" Compay Name "
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.fullname}
@@ -170,6 +177,66 @@ const AddAccess = () => {
           />
           {formik.errors.fullname && formik.touched.fullname && (
             <p className="signup__error">{formik.errors.fullname}</p>
+          )}
+          <TextField
+            type="text"
+            id="outlined-basic"
+            name="address"
+            label="address"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.address}
+            variant="outlined"
+            fullWidth
+            margin="normal"
+          />
+          {formik.errors.address && formik.touched.address && (
+            <p className="signup__error">{formik.errors.address}</p>
+          )}
+          <TextField
+            type="text"
+            id="outlined-basic"
+            name="phoneNumber"
+            label="phoneNumber"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.phoneNumber}
+            variant="outlined"
+            fullWidth
+            margin="normal"
+          />
+          {formik.errors.addrphoneNumberess && formik.touched.phoneNumber && (
+            <p className="signup__error">{formik.errors.phoneNumber}</p>
+          )}
+          <TextField
+            type="text"
+            id="outlined-basic"
+            name="Country"
+            label="Country"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.Country}
+            variant="outlined"
+            fullWidth
+            margin="normal"
+          />
+          {formik.errors.Country && formik.touched.Country && (
+            <p className="signup__error">{formik.errors.Country}</p>
+          )}
+          <TextField
+            type="text"
+            id="outlined-basic"
+            name="roleName"
+            label="role Name"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.roleName}
+            variant="outlined"
+            fullWidth
+            margin="normal"
+          />
+          {formik.errors.roleName && formik.touched.roleName && (
+            <p className="signup__error">{formik.errors.roleName}</p>
           )}
           <div className="password__field">
             <TextField

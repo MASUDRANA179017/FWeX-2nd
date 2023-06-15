@@ -2,6 +2,10 @@ import * as Yup from "yup";
 
 export const signUp = Yup.object({
   fullname: Yup.string().min(2).max(15).required("Please enter your full name"),
+  address: Yup.string().min(5).max(50).required("Please enter your address"),
+  phoneNumber: Yup.string().min(5).max(50).required("Please enter Phone Number"),
+  roleName: Yup.string().min(5).max(10).required("Please enter role Name"),
+  Country: Yup.string().min(5).max(10).required("Please enter Country name"),
   email: Yup.string()
     .email()
     .min(8)

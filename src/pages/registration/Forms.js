@@ -61,7 +61,7 @@ const Forms = () => {
       auth,
       formik.values.email,
       formik.values.password
-    ).then( ({ user }) => {
+    ).then(  ({ user }) => {
         //TODO: add role
       //   const role = {
       //     uid:user.uid,
