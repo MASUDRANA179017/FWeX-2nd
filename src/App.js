@@ -23,6 +23,7 @@ import AddAccess from "./component/access";
 import EmployeDeshbord from "./pages/Deshbord/employee";
 import EmployeeList from "./component/Datafile";
 import AdddataForm from "./component/Datafile/form";
+import Useraddform from "./component/access/Useraddform";
 
 function App() {
   const router = createBrowserRouter(
@@ -41,7 +42,8 @@ function App() {
             <Route path="/access" element={<AddAccess />} />
             <Route path="/employedeshbord" element={<EmployeDeshbord />} />
             <Route path="/employee" element={<EmployeeList />} />
-            <Route path="/AdddataForm" element={<AdddataForm />} />
+            <Route path="/Adddataform" element={<AdddataForm />} />
+            <Route path="/adduseracess" element={<Useraddform />} />
 
           </Route>
         </Route>
