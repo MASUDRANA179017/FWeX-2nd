@@ -26,9 +26,9 @@ const EmployeDeshbord = () => {
           <Grid item xs={6}>
             <BarChart />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <AddDataForm />
-          </Grid>
+          </Grid> */}
 
          
         </Grid>

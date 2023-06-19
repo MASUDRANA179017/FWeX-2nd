@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { getDatabase, onValue, push, ref, set } from "firebase/database";
+import { getDatabase, push, ref, set } from "firebase/database";
 import { useSelector } from "react-redux";
 
-import moment from "moment/moment";
+
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { adduservalidation } from "../../validation/Validation";
@@ -15,7 +15,6 @@ import { PulseLoader } from "react-spinners";
 import { FormControl, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 
 const AddDataForm = () => {
-  const [grouptag, setGrouptag] = useState("");
   const user = useSelector((users) => users.login.loggedIn);
   const db = getDatabase();
   const navigate = useNavigate();

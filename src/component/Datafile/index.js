@@ -77,9 +77,9 @@ const EmployeeList = () => {
     onValue(starCountRef, (snapshot) => {
       let mygrpArr = [];
       snapshot.forEach((item) => {
-        if (user.uid == item.val().adminid) {
+       
           mygrpArr.push({ ...item.val(), id: item.key });
-        }
+        
       });
       setMygrps(mygrpArr);
     });
@@ -107,7 +107,7 @@ const EmployeeList = () => {
     <>
       <div className="mygrps">
         <div className="grouplist_header">
-          <h2>Group Lists</h2>
+          <h2>All worker Lists</h2>
           <div className="group-serches-info">
             <div className="grouplist_searchBoxes">
               <AiOutlineSearch />
@@ -123,44 +123,45 @@ const EmployeeList = () => {
             </Button>
           </div>
         </div>
-        <div className="grouplist_body">
-          {mygrps.map((item, i) => (
-            <div className="mygrps_wrapper" key={i}>
-              <div className="mygrps_img">
-                <img src="/assets/avatar.png" alt="avatr" />
-              </div>
-              <div className="mygrps_titles">
-                <TableContainer>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell align="center" style={{ minWidth: "100px" }}>
-                          Agency Name
-                        </TableCell>
-                        <TableCell align="center" style={{ minWidth: "100px" }}>
-                          Gender
-                        </TableCell>
-                        <TableCell align="center" style={{ minWidth: "100px" }}>
-                          Current Agency
-                        </TableCell>
-                        <TableCell align="center" style={{ minWidth: "100px" }}>
-                          Contact No
-                        </TableCell>
-                        <TableCell align="center" style={{ minWidth: "100px" }}>
-                          Nationality
-                        </TableCell>
+        <div className="workerlist">
+          <div className="workerlist_wrapper">
+            <div className="workerlist_titles">
+              <TableContainer>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell align="center" style={{ minWidth: "100px" }}>
+                        Agency Name
+                      </TableCell>
+                      <TableCell align="center" style={{ minWidth: "100px" }}>
+                        Gender
+                      </TableCell>
+                      <TableCell align="center" style={{ minWidth: "100px" }}>
+                        Current Agency
+                      </TableCell>
+                      <TableCell align="center" style={{ minWidth: "100px" }}>
+                        Contact No
+                      </TableCell>
+                      <TableCell align="center" style={{ minWidth: "100px" }}>
+                        Nationality
+                      </TableCell>
 
-                        <TableCell align="center" style={{ minWidth: "100px" }}>
-                          Status
+                      <TableCell align="center" style={{ minWidth: "100px" }}>
+                        Status
+                      </TableCell>
+                      <TableCell align="center" style={{ minWidth: "100px" }}>
+                        Status
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {mygrps.map((item, i) => (
+                      <TableRow hover role="checkbox" tabIndex={-1} key={i}>
+                        <TableCell align="center">
+                          <div className="mygrps_img">
+                            <img src="/assets/avatar.png" alt="avatr" />
+                          </div>
                         </TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      <TableRow
-                        hover
-                        role="checkbox"
-                        tabIndex={-1}
-                        key={item.code}>
                         <TableCell align="center">
                           {item.AgencyFullName} {item.AgencySurName}
                         </TableCell>
@@ -171,55 +172,57 @@ const EmployeeList = () => {
                         <TableCell align="center">
                           {item.CurrentMobileNo}
                         </TableCell>
-                        <TableCell align="center">{item.Nationality}</TableCell>
                         <TableCell align="center">{item.Status}</TableCell>
+                        <TableCell align="center">
+                          <div className="mygrps_date">
+                            <Stack spacing={2} direction="row">
+                              <div>
+                                <Visibility
+                                  style={{
+                                    fontSize: "20px",
+                                    color: "darkred",
+                                    cursor: "pointer",
+                                  }}
+                                  onClick={handleOpen}
+                                />
+                              </div>
+                              <NavLink>
+                                <Edit
+                                  style={{
+                                    fontSize: "20px",
+                                    color: "darkred",
+                                    cursor: "pointer",
+                                  }}
+                                  // onClick={() => {
+                                  //   editUser(row.id);
+                                  // }}
+                                />
+                              </NavLink>
+
+                              <Delete
+                                style={{
+                                  fontSize: "20px",
+                                  color: "darkred",
+                                  cursor: "pointer",
+                                }}
+                                onClick={() => removedata(item)}
+                              />
+                            </Stack>
+                            <p>
+                              {" "}
+                              <span>
+                                {moment().add(item.date, "days").calendar()}
+                              </span>
+                            </p>
+                          </div>
+                        </TableCell>
                       </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </div>
-
-              <div className="mygrps_date">
-                <Stack spacing={2} direction="row">
-                  <div>
-                    <Visibility
-                      style={{
-                        fontSize: "20px",
-                        color: "darkred",
-                        cursor: "pointer",
-                      }}
-                      onClick={handleOpen}
-                    />
-                  </div>
-                  <NavLink>
-                    <Edit
-                      style={{
-                        fontSize: "20px",
-                        color: "darkred",
-                        cursor: "pointer",
-                      }}
-                      // onClick={() => {
-                      //   editUser(row.id);
-                      // }}
-                    />
-                  </NavLink>
-
-                  <Delete
-                    style={{
-                      fontSize: "20px",
-                      color: "darkred",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => removedata(item)}
-                  />
-                </Stack>
-                <p>
-                  {" "}
-                  <span>{moment().add(item.date, "days").calendar()}</span>
-                </p>
-              </div>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
             </div>
-          ))}
+          </div>
         </div>
       </div>
       <Modal

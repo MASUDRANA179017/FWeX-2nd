@@ -93,7 +93,7 @@ const Forms = () => {
           {navigateto === role ? (
             navigate("/deshbord")
           ) : (
-            navigate("/")
+            navigate("/singleprofile")
           )}
 
 
@@ -360,7 +360,7 @@ const Forms = () => {
             <Link to="/forgotpassword">Forgot your password ?</Link>
           </div>
           <p className="signup__text">
-            Don't have an account ? <Link to="/signup">Sign Up</Link>
+            Don't have an account ? <Link to="/">Home</Link>
           </p>
         </form>
       </div>

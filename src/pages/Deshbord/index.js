@@ -39,12 +39,12 @@ const Deshbord = () => {
             </div>
            
           </Grid>
-          <Grid className="home_items" item xs={12}>
+          {/* <Grid className="home_items" item xs={12}>
             <div>
               <Grouplist />
             </div>
            
-          </Grid>
+          </Grid> */}
 
         </Grid>
       </div>

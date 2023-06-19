@@ -24,6 +24,10 @@ import EmployeDeshbord from "./pages/Deshbord/employee";
 import EmployeeList from "./component/Datafile";
 import AdddataForm from "./component/Datafile/form";
 import Useraddform from "./component/access/Useraddform";
+import AllProfile from "./component/AllProfile/AllProfile";
+import SingleProfilePage from "./component/SingleProfile";
+
+
 
 function App() {
   const router = createBrowserRouter(
@@ -34,6 +38,8 @@ function App() {
         <Route element={<Loggedinuser />}>
           <Route element={<RootLayout />}>
             <Route path="/deshbord" element={<Deshbord />}></Route>
+            <Route path="/allprofile" element={<AllProfile />}></Route>
+            <Route path="/singleprofile" element={<SingleProfilePage />}></Route>
             <Route path="/userlist" element={<UsersTable />} />
             <Route path="/adduser" element={<Addusers />} />
             <Route path="/edituser" element={<EditUserdata />} />
@@ -44,7 +50,6 @@ function App() {
             <Route path="/employee" element={<EmployeeList />} />
             <Route path="/Adddataform" element={<AdddataForm />} />
             <Route path="/adduseracess" element={<Useraddform />} />
-
           </Route>
         </Route>
         <Route element={<Notloggedinuser />}>
