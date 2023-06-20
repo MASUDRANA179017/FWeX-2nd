@@ -37,10 +37,16 @@ export const adduservalidation = Yup.object({
   PassportNo: Yup.string().min(4).max(20).required("please enter Passport No"),
   PassportIssueDate: Yup.string().min(4).max(15).required("please enter Passport Issue Date"),
   PassportPlace: Yup.string().min(4).max(15).required("please select Passport Issue Place"),
- 
+  
   PassportExpiry: Yup.string().min(4).max(15).required("please enter Passport Issue Date"),
   JobSector: Yup.string().min(4).max(15).required("please enter Job Sector"),
   MaritalStatus: Yup.string().min(4).max(15).required("please enter Passport Marital Status"),
+  CurrentmobileNo: Yup.string().min(4).max(15).required("please enter Current Mobile No"),
+  Docstatus: Yup.string().min(4).max(15).required("please enter Current Mobile No"),
+  CountryOrigin: Yup.string().min(4).max(15).required("please Select  CountryOrigin"),
+  RegisteredDate: Yup.string().min(4).max(15).required("please enter Registered Date"),
+  RegisteredByAgency: Yup.string().min(4).max(15).required("please enter Registered By Agency"),
+  Photo: Yup.string().min(4).max(15).required("please Input your Photo"),
 
 
 })
