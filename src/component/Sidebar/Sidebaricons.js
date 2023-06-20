@@ -16,7 +16,7 @@ const Sidebaricons = () => {
             <NavLink className="profile_icons" to="/allprofile">
               <AiFillProfile />
             </NavLink>
-            
+
             <NavLink className="profile_icons" to="/access">
               <Accessibility />
             </NavLink>
@@ -28,6 +28,9 @@ const Sidebaricons = () => {
             </NavLink>
             <NavLink className="profile_icons" to="/singleprofile">
               <AiFillProfile />
+            </NavLink>
+            <NavLink className="profile_icons" to="/employee">
+              <PersonAdd />
             </NavLink>
           </div>
         )}
@@ -44,11 +47,11 @@ const Sidebaricons = () => {
         )}
       </div> */}
 
-      <div className="login__btn">
+      {/* <div className="login__btn">
         <NavLink className="profile_icons" to="/employee">
           <PersonAdd />
         </NavLink>
-      </div>
+      </div> */}
     </div>
   );
 };

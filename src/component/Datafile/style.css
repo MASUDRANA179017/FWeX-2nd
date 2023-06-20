@@ -148,18 +148,38 @@
 }
 
 .error__message {
-    color: red;
     margin: 5px;
+    color: var(--orange-color);
 }
 .errors {
-    color: red;
+    color: var(--orange-color);
     margin: 5px;
 }
+.Adddata__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+ 
+}
 
+.Adddata__btn button {
+    font-family: var(--primary-font) !important;
+    padding: 14px 0;
+    background: var(--primary-color) !important;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 50px;
+  }
 
-.tittle{
+.main_tittle{
     text-align: center;
     font-size: 45px;
+}
+.sub_tittle{
+    text-align: center;
+    font-size: 25px;
 }
 
 .reg__btn button {

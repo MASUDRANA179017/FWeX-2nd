@@ -1,5 +1,5 @@
 import React from 'react'
-import Profile from './AllProfile';
+import AllProfile from './AllProfile';
 
 
 
@@ -7,7 +7,7 @@ import Profile from './AllProfile';
 const AllProfilePage = () => {
   return (
     <>
-        <Profile />
+        <AllProfile />
     </>
   )
 }

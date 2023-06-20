@@ -38,29 +38,14 @@ const Profile = () => {
                 <div className="col-md-7">
                   <div className="card">
                     <Grid container>
-                      <Grid item xs={3}>
-                        <div className="profileimg">
-                          <img
-                            src=" /assetes/medicalreport/medical.jpg"
-                            alt="medical Report"
-                          />
-                        </div>
-                        <div className="profileimg">
-                          <img
-                            src=" /assetes/flight/flight.jpg"
-                            alt="medical Report"
-                          />
-                        </div>
-                      </Grid>
-                      <Grid item xs={3}>
+                      
+                      <Grid item xs={4}>
                         <div className="profileimg">
                           <img src="https://mui.com/static/images/avatar/2.jpg" />
                         </div>
-                        <div className="profileimg">
-                          <img src="https://mui.com/static/images/avatar/2.jpg" />
-                        </div>
+                        
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={8}>
                         <div className="profile_text ">
                           <h2>Full Name: {user.fullname}</h2>
                           <h4> Email: {user.email}</h4>

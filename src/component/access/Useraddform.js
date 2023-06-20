@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { Button, IconButton } from "@mui/material";
+import { Button, FormControl, IconButton, InputLabel, MenuItem, Select } from "@mui/material";
 import { useFormik } from "formik";
 import { signUp } from "../../validation/Validation";
 import { Link, useNavigate } from "react-router-dom";
@@ -206,7 +206,7 @@ const Useraddform = () => {
             fullWidth
             margin="normal"
           />
-          {formik.errors.addrphoneNumberess && formik.touched.phoneNumber && (
+          {formik.errors.phoneNumber && formik.touched.phoneNumber && (
             <p className="signup__error">{formik.errors.phoneNumber}</p>
           )}
           <TextField
@@ -224,7 +224,30 @@ const Useraddform = () => {
           {formik.errors.Country && formik.touched.Country && (
             <p className="signup__error">{formik.errors.Country}</p>
           )}
-          <TextField
+          <FormControl sx={{ mt: 2 }} fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      Role Name
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.roleName}
+                      name="roleName"
+                      //required="true"
+                      label="Role Name">
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value={"agent"}>Agent</MenuItem>
+                      <MenuItem value={"employee"}>Employee</MenuItem>
+                    </Select>
+                    {formik.errors.roleName &&
+                      formik.touched.roleName && (
+                        <p className="errors">{formik.errors.roleName}</p>
+                      )}
+                  </FormControl>
+          {/* <TextField
             type="text"
             id="outlined-basic"
             name="roleName"
@@ -238,7 +261,7 @@ const Useraddform = () => {
           />
           {formik.errors.roleName && formik.touched.roleName && (
             <p className="signup__error">{formik.errors.roleName}</p>
-          )}
+          )} */}
           <div className="password__field">
             <TextField
               type={passShow}

@@ -1,5 +1,5 @@
 import React from 'react'
-import Profile from './SingleProfile';
+import SingleProfile from './SingleProfile';
 
 
 
@@ -8,7 +8,7 @@ import Profile from './SingleProfile';
 const SingleProfilePage = () => {
   return (
     <>
-        <Profile />
+        <SingleProfile />
     </>
   )
 }

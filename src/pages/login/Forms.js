@@ -93,7 +93,7 @@ const Forms = () => {
           {navigateto === role ? (
             navigate("/deshbord")
           ) : (
-            navigate("/singleprofile")
+            navigate("/employedeshbord")
           )}
 
 
