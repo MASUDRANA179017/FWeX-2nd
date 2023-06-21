@@ -161,7 +161,9 @@ const Viewuserlist = () => {
                       <TableRow hover role="checkbox" key={i} tabIndex={-1}>
                         <TableCell align="center">
                           <div className="mygrps_img">
-                            <img src="/assets/avatar.png" alt="avatr" />
+                            <picture>
+                              <img src={item.photoURL} alt="profilepic" />
+                            </picture>
                           </div>
                         </TableCell>
                         <TableCell align="center">{item.companyName}</TableCell>
@@ -170,10 +172,10 @@ const Viewuserlist = () => {
                         <TableCell align="center">{item.address}</TableCell>
                         <TableCell align="center">{item.Country}</TableCell>
                         <TableCell align="center">{item.roleName}</TableCell>
-                        
-                        <TableCell align="center" >
-                          <div >
-                            <Stack direction="row" style={{display:"flex"}}>
+
+                        <TableCell align="center">
+                          <div>
+                            <Stack direction="row" style={{ display: "flex" }}>
                               <div>
                                 <Visibility
                                   style={{

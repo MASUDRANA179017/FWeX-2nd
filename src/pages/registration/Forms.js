@@ -73,12 +73,14 @@ const Forms = () => {
 
         updateProfile(auth.currentUser, {
           displayName: formik.values.fullname,
+          userRoleName: formik.values.roleName,
         }).then(() => {
           setLoading(true);
           sendEmailVerification(auth.currentUser).then(() => {
             set(ref(db, "users/" + user.uid), {
               username: user.displayName,
               email: user.email,
+              Rolename: user.userRoleName,
             }).then(() => {
               toast.success("Email has sent", {
                 position: "top-center",

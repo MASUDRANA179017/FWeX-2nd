@@ -77,8 +77,9 @@ const EmployeeList = () => {
     onValue(starCountRef, (snapshot) => {
       let mygrpArr = [];
       snapshot.forEach((item) => {
-       
-          mygrpArr.push({ ...item.val(), id: item.key });
+       if (user.uid == item.val().adminid) {
+         mygrpArr.push({ ...item.val(), id: item.key });
+       }
         
       });
       setMygrps(mygrpArr);
@@ -105,7 +106,7 @@ const EmployeeList = () => {
 
   return (
     <>
-      <div className="mygrps">
+      <div className="card">
         <div className="grouplist_header">
           <h2>All worker Lists</h2>
           <div className="group-serches-info">
@@ -131,6 +132,9 @@ const EmployeeList = () => {
                   <TableHead>
                     <TableRow>
                       <TableCell align="center" style={{ minWidth: "100px" }}>
+                        Profile Image
+                      </TableCell>
+                      <TableCell align="center" style={{ minWidth: "100px" }}>
                         Agency Name
                       </TableCell>
                       <TableCell align="center" style={{ minWidth: "100px" }}>
@@ -150,7 +154,7 @@ const EmployeeList = () => {
                         Status
                       </TableCell>
                       <TableCell align="center" style={{ minWidth: "100px" }}>
-                        Status
+                        Action
                       </TableCell>
                     </TableRow>
                   </TableHead>
@@ -170,8 +174,12 @@ const EmployeeList = () => {
                           {item.AgencyCurrent}
                         </TableCell>
                         <TableCell align="center">
-                          {item.CurrentMobileNo}
+                          {item.Nationality}
                         </TableCell>
+                        <TableCell align="center">
+                          {item.Nationality}
+                        </TableCell>
+                        
                         <TableCell align="center">{item.Status}</TableCell>
                         <TableCell align="center">
                           <div className="mygrps_date">
@@ -183,7 +191,8 @@ const EmployeeList = () => {
                                     color: "darkred",
                                     cursor: "pointer",
                                   }}
-                                  onClick={handleOpen}
+                                  
+                                  onClick={() => handleOpen(item)}
                                 />
                               </div>
                               <NavLink>
@@ -193,9 +202,8 @@ const EmployeeList = () => {
                                     color: "darkred",
                                     cursor: "pointer",
                                   }}
-                                  // onClick={() => {
-                                  //   editUser(row.id);
-                                  // }}
+                                  
+                                  onClick={() => handleOpen(item)}
                                 />
                               </NavLink>
 
@@ -234,7 +242,7 @@ const EmployeeList = () => {
           <Viewdata setOpen={setOpen} />
         </Box>
       </Modal>
-      <Modal
+      {/* <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -242,7 +250,7 @@ const EmployeeList = () => {
         <Box className="modals">
           <Viewdata setOpen={setOpen} />
         </Box>
-      </Modal>
+      </Modal> */}
     </>
   );
 };

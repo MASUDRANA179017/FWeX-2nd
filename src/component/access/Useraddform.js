@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import { Button, FormControl, IconButton, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import { useFormik } from "formik";
 import { signUp } from "../../validation/Validation";
 import { Link, useNavigate } from "react-router-dom";
@@ -65,18 +72,20 @@ const Useraddform = () => {
       auth,
       formik.values.email,
       formik.values.password
-    ).then( ({ user }) => {
+    )
+      .then(({ user }) => {
         //TODO: add role
-      //   const role = {
-      //     uid:user.uid,
-      //     roleName: 'noRole'
-      //   }
-        
-      // const userRef = collection(db, "roles");
-      // addDoc(userRef, role);
+        //   const role = {
+        //     uid:user.uid,
+        //     roleName: 'noRole'
+        //   }
+
+        // const userRef = collection(db, "roles");
+        // addDoc(userRef, role);
 
         updateProfile(auth.currentUser, {
           displayName: formik.values.fullname,
+          roleName: formik.values.roleName,
         }).then(() => {
           setLoading(true);
           sendEmailVerification(auth.currentUser).then(() => {
@@ -97,7 +106,7 @@ const Useraddform = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-              })
+              });
               setTimeout(() => {
                 navigate("/access");
               }, 6500);
@@ -225,28 +234,25 @@ const Useraddform = () => {
             <p className="signup__error">{formik.errors.Country}</p>
           )}
           <FormControl sx={{ mt: 2 }} fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      Role Name
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      value={formik.values.roleName}
-                      name="roleName"
-                      //required="true"
-                      label="Role Name">
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
-                      <MenuItem value={"agent"}>Agent</MenuItem>
-                      <MenuItem value={"employee"}>Employee</MenuItem>
-                    </Select>
-                    {formik.errors.roleName &&
-                      formik.touched.roleName && (
-                        <p className="errors">{formik.errors.roleName}</p>
-                      )}
-                  </FormControl>
+            <InputLabel id="demo-simple-select-label">Role Name</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.roleName}
+              name="roleName"
+              //required="true"
+              label="Role Name">
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={"agent"}>Agent</MenuItem>
+              <MenuItem value={"employee"}>Employee</MenuItem>
+            </Select>
+            {formik.errors.roleName && formik.touched.roleName && (
+              <p className="errors">{formik.errors.roleName}</p>
+            )}
+          </FormControl>
           {/* <TextField
             type="text"
             id="outlined-basic"
@@ -322,7 +328,6 @@ const Useraddform = () => {
               </Button>
             )}
           </div>
-          
         </form>
       </div>
     </>

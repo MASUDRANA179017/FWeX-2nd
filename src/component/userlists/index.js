@@ -35,7 +35,9 @@ const Userlists = () => {
         {userLists.map((item, i) => (
           <div className="userlists_wrapper" key={i}>
             <div className="userlists_img">
-              <img src="/assets/avatar.png" alt="avatr" />
+              <picture>
+                <img src={user.photoURL} alt="profilepic" />
+              </picture>
             </div>
             <div className="userlists_titles">
               <h4>{item.username}</h4>

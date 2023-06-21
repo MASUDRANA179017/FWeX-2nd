@@ -7,8 +7,6 @@ import { signOut, getAuth } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { Loginusers } from "../../feature/Slice/LoginSlice";
 import { useNavigate } from "react-router-dom";
-import BasicModal from "../Modal";
-import Modal from "../Modal";
 import Modals from "../Modal";
 
 
@@ -22,13 +20,10 @@ const Sidebar = () => {
   const handleLogout = () => {
     signOut(auth).then(() => {
       localStorage.removeItem("users");
-      localStorage.removeItem("role");
       dispatch(Loginusers(null));
       navigate("/login");
     });
   };
-
-console.log(user);
 
   return (
     <>
@@ -37,14 +32,13 @@ console.log(user);
           <div className="profile_details">
             <div className="profile_picture" onClick={handleOpen}>
               <picture>
-                <img src="/assets/profilepicture.jpg" alt="profilepic" />
+                <img src={user.photoURL} alt="profilepic" />
               </picture>
               <div className="profile_opverlay">
                 <AiOutlineCloudUpload />
               </div>
             </div>
             <h4>{user.displayName}</h4>
-            
           </div>
           <div className="profiles_icons">
             <Sidebaricons />

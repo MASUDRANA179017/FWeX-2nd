@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import {
@@ -15,7 +13,6 @@ import {
 import { useFormik } from "formik";
 import { adduservalidation } from "../../validation/Validation";
 import { Link, useNavigate } from "react-router-dom";
-
 
 // import { addDoc, collection } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
@@ -34,13 +31,41 @@ const AddDataForm = () => {
     AgencyFullName: "",
     AgencySurName: "",
     Gender: "",
+    BirthDate: "",
     BirthPlace: "",
     Nationality: "",
     PassportNo: "",
     PassportIssueDate: "",
-    passportissuePlace: "",
-    passportExpiry: "",
+    PassportPlace: "",
+    PassportExpiryDate: "",
     JobSector: "",
+    Maritalstatus: "",
+    CurrentmobileNo: "",
+    mobileOperator: "",
+    FlightsProvider: "",
+    FlightDepartureDate: "",
+    FlightArrivalDate: "",
+    AgencyCurrent: "",
+    Status: "",
+    Docstatus: "",
+    visaExpiryDate: "",
+    workPermitExpiryDate: "",
+    AddressOne: "",
+    AddressTwo: "",
+    State: "",
+    District: "",
+    postalcode: "",
+    CountryOrigin: "",
+    Recruitmentstatus: "",
+    RegisteredDate: "",
+    RegisteredByAgency: "",
+    Absconded: "",
+    YourReferralCode: "",
+    ReferralCodeBy: "",
+    ReferralNameBy: "",
+    Skills: "",
+    OneCALLMobile: "",
+    AgentCode: "",
   };
   const formik = useFormik({
     initialValues: initialvalues,
@@ -53,17 +78,46 @@ const AddDataForm = () => {
   const handleWorkerListCreate = () => {
     setLoading(true);
 
-    set(ref(db, "employee/" + user.uid), {
+    push(ref(db, "employee/"), {
+      adminid: user.uid,
       AgencyFullName: formik.values.AgencyFullName,
       AgencySurName: formik.values.AgencySurName,
       Gender: formik.values.Gender,
+      BirthDate: formik.values.BirthDate,
       BirthPlace: formik.values.BirthPlace,
       Nationality: formik.values.Nationality,
       PassportNo: formik.values.PassportNo,
       PassportIssueDate: formik.values.PassportIssueDate,
-      passportissuePlace: formik.values.passportissuePlace,
-      passportExpiry: formik.values.passportExpiry,
+      PassportPlace: formik.values.PassportPlace,
+      PassportExpiryDate: formik.values.PassportExpiryDate,
       JobSector: formik.values.JobSector,
+      Maritalstatus: formik.values.Maritalstatus,
+      CurrentmobileNo: formik.values.CurrentmobileNo,
+      mobileOperator: formik.values.mobileOperator,
+      FlightsProvider: formik.values.FlightsProvider,
+      FlightDepartureDate: formik.values.FlightDepartureDate,
+      FlightArrivalDate: formik.values.FlightArrivalDate,
+      AgencyCurrent: formik.values.AgencyCurrent,
+      Status: formik.values.Status,
+      Docstatus: formik.values.Docstatus,
+      visaExpiryDate: formik.values.visaExpiryDate,
+      workPermitExpiryDate: formik.values.workPermitExpiryDate,
+      AddressOne: formik.values.AddressOne,
+      AddressTwo: formik.values.AddressTwo,
+      State: formik.values.State,
+      District: formik.values.District,
+      postalcode: formik.values.postalcode,
+      CountryOrigin: formik.values.CountryOrigin,
+      Recruitmentstatus: formik.values.Recruitmentstatus,
+      RegisteredDate: formik.values.RegisteredDate,
+      RegisteredByAgency: formik.values.RegisteredByAgency,
+      Absconded: formik.values.Absconded,
+      YourReferralCode: formik.values.YourReferralCode,
+      ReferralCodeBy: formik.values.ReferralCodeBy,
+      ReferralNameBy: formik.values.ReferralNameBy,
+      Skills: formik.values.Skills,
+      OneCALLMobile: formik.values.OneCALLMobile,
+      AgentCode: formik.values.AgentCode,
     })
       .then(() => {
         toast.success("Data add successfully", {
@@ -114,7 +168,6 @@ const AddDataForm = () => {
                 <Grid item xs={5}>
                   <TextField
                     type="text"
-                    id="outlined-basic"
                     name="AgencyFullName"
                     label="Agency Full Name"
                     onChange={formik.handleChange}
@@ -134,7 +187,6 @@ const AddDataForm = () => {
                 <Grid item xs={5}>
                   <TextField
                     type="text"
-                    id="outlined-basic"
                     name="AgencySurName"
                     label="Agency Sur Name"
                     onChange={formik.handleChange}
@@ -262,12 +314,11 @@ const AddDataForm = () => {
                     </p>
                   )}
                 </Grid>
-                
-                
+
                 <Grid item xs={5}>
                   <FormControl sx={{ mt: 2 }} fullWidth>
                     <InputLabel id="demo-simple-select-label">
-                    Passport Issue Place
+                      Passport Issue Place
                     </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
@@ -281,7 +332,6 @@ const AddDataForm = () => {
                       <MenuItem value={"Bangladesh"}>Bangladesh</MenuItem>
                       <MenuItem value={"India"}>India</MenuItem>
                       <MenuItem value={"Myanmar"}>Myanmar</MenuItem>
-                      
                     </Select>
                     {formik.errors.PassportPlace && (
                       <p className="errors">{formik.errors.PassportPlace}</p>
@@ -329,11 +379,17 @@ const AddDataForm = () => {
                       <MenuItem value={"Education"}>Education</MenuItem>
                       <MenuItem value={"Healthcare"}>Healthcare</MenuItem>
                       <MenuItem value={"Hospitality"}>Hospitality</MenuItem>
-                      <MenuItem value={"Information Technology"}>Information Technology</MenuItem>
+                      <MenuItem value={"Information Technology"}>
+                        Information Technology
+                      </MenuItem>
                       <MenuItem value={"Marketing"}>Marketing</MenuItem>
-                      <MenuItem value={"Media and Communications"}>Media and Communications</MenuItem>
+                      <MenuItem value={"Media and Communications"}>
+                        Media and Communications
+                      </MenuItem>
                       <MenuItem value={"Retail"}>Retail</MenuItem>
-                      <MenuItem value={"Transportation"}>Transportation</MenuItem>
+                      <MenuItem value={"Transportation"}>
+                        Transportation
+                      </MenuItem>
                       <MenuItem value={"Utilities"}>Utilities</MenuItem>
                     </Select>
                     {formik.errors.JobSector && formik.touched.JobSector && (
@@ -348,10 +404,10 @@ const AddDataForm = () => {
                     </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
-                      value={formik.values.JobSector}
+                      value={formik.values.Maritalstatus}
                       onChange={formik.handleChange}
-                      name="JobSector"
-                      label="Job Sector">
+                      name="Maritalstatus"
+                      label="Marital status">
                       <MenuItem value="">
                         <em>Select Status </em>
                       </MenuItem>
@@ -361,9 +417,10 @@ const AddDataForm = () => {
                       <MenuItem value={"Divorced"}>Divorced</MenuItem>
                       <MenuItem value={"Single"}>Single</MenuItem>
                     </Select>
-                    {formik.errors.JobSector && formik.touched.JobSector && (
-                      <p className="errors">{formik.errors.JobSector}</p>
-                    )}
+                    {formik.errors.Maritalstatus &&
+                      formik.touched.Maritalstatus && (
+                        <p className="errors">{formik.errors.Maritalstatus}</p>
+                      )}
                   </FormControl>
                 </Grid>
                 <Grid item xs={5}>
@@ -379,7 +436,9 @@ const AddDataForm = () => {
                     margin="normal"
                   />
                   {formik.errors.CurrentmobileNo && (
-                    <p className="error__message">{formik.errors.CurrentmobileNo}</p>
+                    <p className="error__message">
+                      {formik.errors.CurrentmobileNo}
+                    </p>
                   )}
                 </Grid>
                 <Grid item xs={5}>
@@ -394,7 +453,6 @@ const AddDataForm = () => {
                     value={formik.values.mobileOperator}
                     margin="normal"
                   />
-                  
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -404,11 +462,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                   
                     value={formik.values.FlightsProvider}
                     margin="normal"
                   />
-                  
                 </Grid>
 
                 <Grid item xs={5}>
@@ -420,11 +476,9 @@ const AddDataForm = () => {
                     focused
                     fullWidth
                     onChange={formik.handleChange}
-                    
                     value={formik.values.FlightDepartureDate}
                     margin="normal"
                   />
-                 
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -435,11 +489,9 @@ const AddDataForm = () => {
                     focused
                     fullWidth
                     onChange={formik.handleChange}
-                    
                     value={formik.values.FlightArrivalDate}
                     margin="normal"
                   />
-                  
                 </Grid>
 
                 <Grid item xs={5}>
@@ -450,11 +502,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                    
                     value={formik.values.AgencyCurrent}
                     margin="normal"
                   />
-                 
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -464,11 +514,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                   
                     value={formik.values.Status}
                     margin="normal"
                   />
-                 
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -496,11 +544,9 @@ const AddDataForm = () => {
                     focused
                     fullWidth
                     onChange={formik.handleChange}
-                   
                     value={formik.values.visaExpiryDate}
                     margin="normal"
                   />
-                  
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -511,11 +557,9 @@ const AddDataForm = () => {
                     focused
                     fullWidth
                     onChange={formik.handleChange}
-                    
                     value={formik.values.workPermitExpiryDate}
                     margin="normal"
                   />
-                 
                 </Grid>
 
                 <Grid item xs={5}>
@@ -526,11 +570,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                   
                     value={formik.values.AddressOne}
                     margin="normal"
                   />
-                  
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -540,11 +582,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                    
                     value={formik.values.AddressTwo}
                     margin="normal"
                   />
-                  
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -554,11 +594,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                    
                     value={formik.values.State}
                     margin="normal"
                   />
-                  
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -568,11 +606,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                    
                     value={formik.values.District}
                     margin="normal"
                   />
-                  
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -582,22 +618,20 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                    
                     value={formik.values.postalcode}
                     margin="normal"
                   />
-                  
                 </Grid>
                 <Grid item xs={5}>
                   <FormControl sx={{ mt: 2 }} fullWidth>
                     <InputLabel id="demo-simple-select-label">
-                    Country Origin
+                      Country Origin
                     </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       value={formik.values.CountryOrigin}
                       onChange={formik.handleChange}
-                      name="PassportPlace"
+                      name="CountryOrigin"
                       label="Country Origin">
                       <MenuItem value="">
                         <em>None</em>
@@ -605,7 +639,6 @@ const AddDataForm = () => {
                       <MenuItem value={"Bangladesh"}>Bangladesh</MenuItem>
                       <MenuItem value={"India"}>India</MenuItem>
                       <MenuItem value={"Myanmar"}>Myanmar</MenuItem>
-                      
                     </Select>
                     {formik.errors.CountryOrigin && (
                       <p className="errors">{formik.errors.CountryOrigin}</p>
@@ -620,17 +653,14 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                   
                     value={formik.values.Recruitmentstatus}
                     margin="normal"
                   />
-                 
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
                     type="date"
                     focused
-
                     name="RegisteredDate"
                     label="Registered Date"
                     variant="outlined"
@@ -641,7 +671,9 @@ const AddDataForm = () => {
                     margin="normal"
                   />
                   {formik.errors.RegisteredDate && (
-                    <p className="error__message">{formik.errors.RegisteredDate}</p>
+                    <p className="error__message">
+                      {formik.errors.RegisteredDate}
+                    </p>
                   )}
                 </Grid>
                 <Grid item xs={5}>
@@ -657,7 +689,9 @@ const AddDataForm = () => {
                     margin="normal"
                   />
                   {formik.errors.RegisteredByAgency && (
-                    <p className="error__message">{formik.errors.RegisteredByAgency}</p>
+                    <p className="error__message">
+                      {formik.errors.RegisteredByAgency}
+                    </p>
                   )}
                 </Grid>
                 <Grid item xs={5}>
@@ -668,11 +702,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                  
                     value={formik.values.Absconded}
                     margin="normal"
                   />
-                  
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -682,11 +714,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                   
                     value={formik.values.YourReferralCode}
                     margin="normal"
                   />
-                  
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -696,11 +726,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                   
                     value={formik.values.ReferralCodeBy}
                     margin="normal"
                   />
-                  
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -710,11 +738,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-
                     value={formik.values.ReferralNameBy}
                     margin="normal"
                   />
-                  
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -724,11 +750,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                    
                     value={formik.values.Skills}
                     margin="normal"
                   />
-                 
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -738,11 +762,9 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                    
                     value={formik.values.OneCALLMobile}
                     margin="normal"
                   />
-                 
                 </Grid>
                 <Grid item xs={5}>
                   <TextField
@@ -752,13 +774,11 @@ const AddDataForm = () => {
                     variant="outlined"
                     fullWidth
                     onChange={formik.handleChange}
-                    
                     value={formik.values.AgentCode}
                     margin="normal"
                   />
-                  
                 </Grid>
-                <Grid item xs={5}>
+                {/* <Grid item xs={5}>
                   <TextField
                     type="file"
                     name="Photo"
@@ -826,9 +846,7 @@ const AddDataForm = () => {
                     <p className="error__message">{formik.errors.Photo}</p>
                   )}
                   
-                </Grid>
-                
-                
+                </Grid> */}
               </Grid>
               <div className="Adddata__btn">
                 {loading === true ? (
