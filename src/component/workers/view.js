@@ -13,7 +13,7 @@ import {
 import { useSelector } from "react-redux";
 import { getDatabase, onValue, ref } from "firebase/database";
 
-const Viewdata = () => {
+const Viewdata = ({worker}) => {
   const user = useSelector((users) => users.login.loggedIn);
 
   const [toggle, setToggle] = useState(1);
@@ -21,31 +21,8 @@ const Viewdata = () => {
     setToggle(id);
   }
 
-  const db = getDatabase();
-  const [myEmployee, setMyEmployee] = useState([]);
-  // const removedata = (item) => {
-  //   set(push(ref(db, "removedata")), {
-  //     reciverid: user.uid,
-  //     recivername: user.displayName,
-  //   }).then(() => {
-  //     remove(ref(db, "employee/" + item.id));
-  //   });
-  // };
 
-  useEffect((item) => {
-    const starCountRef = ref(db, "employee/"+ item.id);
-    onValue(starCountRef, (snapshot) => {
-      let myEmployeeArr = [];
-      snapshot.forEach((item) => {
-       
-        myEmployee.push({ ...item.val(), id: item.key });
-        
-      });
-      setMyEmployee(myEmployeeArr);
-    });
-  }, []);
-
-  console.log(myEmployee);
+ 
 
   return (
     <>
@@ -114,59 +91,59 @@ const Viewdata = () => {
                               <TableBody>
                                 <TableRow>
                                   <TableCell>Name:</TableCell>
-                                  <TableCell>{user.AgencyFullName}</TableCell>
+                                  <TableCell>{worker.AgencyFullName}</TableCell>
                                   <TableCell>Surname:</TableCell>
-                                  <TableCell>{user.AgencySurName}</TableCell>
+                                  <TableCell>{worker.AgencySurName}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                   <TableCell>Gender:</TableCell>
-                                  <TableCell>{user.Gender}</TableCell>
+                                  <TableCell>{worker.Gender}</TableCell>
                                   <TableCell>Birth Date:</TableCell>
-                                  <TableCell>{user.BirthDate}</TableCell>
+                                  <TableCell>{worker.BirthDate}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                   <TableCell>Birth Place:</TableCell>
-                                  <TableCell>{user.BirthPlace}</TableCell>
+                                  <TableCell>{worker.BirthPlace}</TableCell>
                                   <TableCell>Nationality:</TableCell>
-                                  <TableCell>{user.Nationality}</TableCell>
+                                  <TableCell>{worker.Nationality}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                   <TableCell>Marital Status: </TableCell>
-                                  <TableCell>{user.MaritalStatus}</TableCell>
+                                  <TableCell>{worker.MaritalStatus}</TableCell>
                                   <TableCell>Country:</TableCell>
-                                  <TableCell>{user.CountryOrigin}</TableCell>
+                                  <TableCell>{worker.CountryOrigin}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                   <TableCell>Passport: </TableCell>
-                                  <TableCell>{user.PassportNo}</TableCell>
+                                  <TableCell>{worker.PassportNo}</TableCell>
                                   <TableCell>Passport Issue Place:</TableCell>
-                                  <TableCell>{user.passportExpiry}</TableCell>
+                                  <TableCell>{worker.passportExpiry}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                   <TableCell>Passport Issue Date: </TableCell>
                                   <TableCell>
-                                    {user.PassportIssueDate}
+                                    {worker.PassportIssueDate}
                                   </TableCell>
                                   <TableCell>Passport Expiry:</TableCell>
-                                  <TableCell>{user.AgencyFullName}</TableCell>
+                                  <TableCell>{worker.AgencyFullName}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                   <TableCell>Job Sector : </TableCell>
-                                  <TableCell>{user.JobSector}</TableCell>
+                                  <TableCell>{worker.JobSector}</TableCell>
                                   <TableCell>Current Agency:</TableCell>
-                                  <TableCell>{user.AgencyCurrent}</TableCell>
+                                  <TableCell>{worker.AgencyCurrent}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                   <TableCell>Address: </TableCell>
-                                  <TableCell>{user.Address1}</TableCell>
+                                  <TableCell>{worker.Address1}</TableCell>
                                   <TableCell>Current Mobile No:</TableCell>
-                                  <TableCell>{user.CurrentMobileNo}</TableCell>
+                                  <TableCell>{worker.CurrentMobileNo}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                   <TableCell>Status:</TableCell>
-                                  <TableCell>{user.Status}</TableCell>
+                                  <TableCell>{worker.Status}</TableCell>
                                   <TableCell>Registered Date:</TableCell>
-                                  <TableCell>{user.RegisteredDate}</TableCell>
+                                  <TableCell>{worker.RegisteredDate}</TableCell>
                                 </TableRow>
                               </TableBody>
                             </Table>

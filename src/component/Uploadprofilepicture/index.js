@@ -15,7 +15,7 @@ import LoginSlice, { Loginusers } from "../../feature/Slice/LoginSlice";
 
 const Uploadprofile = ({ setOpen }) => {
   const storage = getStorage();
-  const storageRef = ref(storage, "some-child");
+  const storageRef = ref(storage, "users/" + user.uid);
   const [image, setImage] = useState("");
   const dispatch = useDispatch();
   const [cropData, setCropData] = useState("#");

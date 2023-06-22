@@ -32,9 +32,13 @@ import TableRow from "@mui/material/TableRow";
 
 const EmployeeList = () => {
   const [open, setOpen] = React.useState(false);
+  const [dialogData, setDialogData] = React.useState({});
 
   const user = useSelector((users) => users.login.loggedIn);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = (item) => {
+    setDialogData({...item});
+    setOpen(true);
+  }
   const handleClose = () => setOpen(false);
   const db = getDatabase();
   const [mygrps, setMygrps] = useState([]);
@@ -239,7 +243,7 @@ const EmployeeList = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Box className="modals">
-          <Viewdata setOpen={setOpen} />
+          <Viewdata setOpen={setOpen} worker={dialogData} />
         </Box>
       </Modal>
       {/* <Modal
