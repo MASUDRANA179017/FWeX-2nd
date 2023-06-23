@@ -6,15 +6,11 @@ import { Facebook, Instagram } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { getDatabase, onValue, ref } from "firebase/database";
 
-
-
 const Profile = () => {
   const user = useSelector((users) => users.login.loggedIn);
 
   const db = getDatabase();
   const [mygrps, setMygrps] = useState([]);
-
-
 
   useEffect(() => {
     const starCountRef = ref(db, "users");
@@ -38,19 +34,19 @@ const Profile = () => {
                 <div className="col-md-7">
                   <div className="card">
                     <Grid container>
-                      
                       <Grid item xs={4}>
                         <div className="profileimg">
-                          <img src="https://mui.com/static/images/avatar/2.jpg" />
+                          <picture>
+                            <img src={user.photoURL} alt="profilepic" />
+                          </picture>
                         </div>
-                        
                       </Grid>
                       <Grid item xs={8}>
                         <div className="profile_text ">
                           <h2>Full Name: {user.fullname}</h2>
                           <h4> Email: {user.email}</h4>
                           <h5> Created Date: {user.createdAt}</h5>
-                          
+
                           <h4>Phone Number: {user.phoneNumber}</h4>
                           <div>
                             <p className="byodata">
@@ -86,9 +82,5 @@ const Profile = () => {
     </>
   );
 };
-
-
-
-
 
 export default Profile;

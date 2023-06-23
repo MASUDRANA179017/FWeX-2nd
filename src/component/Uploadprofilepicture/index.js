@@ -14,13 +14,13 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginSlice, { Loginusers } from "../../feature/Slice/LoginSlice";
 
 const Uploadprofile = ({ setOpen }) => {
+  const user = useSelector((users) => users.login.loggedIn);
   const storage = getStorage();
   const storageRef = ref(storage, "users/" + user.uid);
   const [image, setImage] = useState("");
   const dispatch = useDispatch();
   const [cropData, setCropData] = useState("#");
   const [cropper, setCropper] = useState();
-  const user = useSelector((users) => users.login.loggedIn);
   const auth = getAuth();
 
   const profilePic = useRef(null);
